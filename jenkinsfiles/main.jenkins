@@ -1,17 +1,5 @@
-#!groovy
-properties([disableConcurrentBuilds()])
-
-pipeline
+node
 {
-	agent any
-	options
-	{
-		timestamps()
-	}
-
-stages
-{
-
 	stage ('Code Checkout') 
 	{
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git', url: 'git@github.com:AlexViki/laba8_jenkins_sonarqube_ansible.git']]])
@@ -19,7 +7,7 @@ stages
 	
 	stage ('Code Quality')
 	{
-		steps
+		script
 		{
 			def scannerHome = tool 'SonarQubeScaner';
 			withSonarQubeEnv("SonarQubeServer")
@@ -31,39 +19,24 @@ stages
 	
 	stage("Quality Gate")
 	{
-		steps {
-			sleep(10)
-			timeout(time: 1, unit: 'MINUTES')
-			{
-				def qg = waitForQualityGate()
-				print "Finished waiting"
-				if (qg.status != 'OK')
+		sleep(60)
+		timeout(time: 1, unit: 'MINUTES')
+		{
+			def qg = waitForQualityGate()
+			print "Finished waiting"
+			if (qg.status != 'OK')
 				{
 					error "Pipeline aborted due to quality gate failure: ${qg.status}"
 				}
-			}
 		}
     }
 	
 	stage ('Build')
 	{
-		steps
+		script
 		{
-			echo '---------Installing Azure---------'
-			sh 'sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
-			withCredentials([azureServicePrincipal('laba_08')])
-			{
-				sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
-			}
-			echo '---------Installing Ansible---------'
-			sh 'sudo apt-get update'
-			sh 'sudo apt-get install -y libssl-dev libffi-dev python-dev python-pip'
-			sh 'sudo pip install ansible'
-			sh 'sudo pip install ansible[azure]'
+			echo '----BUILD----'
+			sh 'pwd'
 		}
 	}
-
 }
-
-}
-
