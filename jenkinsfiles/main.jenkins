@@ -19,7 +19,7 @@ node
 	
 	stage("Quality Gate")
 	{
-		sleep(60)
+		sleep(10)
 		timeout(time: 1, unit: 'MINUTES')
 		{
 			def qg = waitForQualityGate()
@@ -36,7 +36,7 @@ node
 		script
 		{
 			echo '----BUILD----'
-			sh 'pwd'
+			sh 'sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
 		}
 	}
 }
