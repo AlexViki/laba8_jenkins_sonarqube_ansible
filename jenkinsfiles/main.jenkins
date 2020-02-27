@@ -37,6 +37,7 @@ node
 		{
 			echo '----BUILD----'
 			sh 'sudo apt-get update'
+			sh 'sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
 		}
 	}
 }
