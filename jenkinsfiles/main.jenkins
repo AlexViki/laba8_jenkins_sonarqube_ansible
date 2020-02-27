@@ -1,6 +1,17 @@
 pipeline
 {
-	
+	agent any
+	// run every minute
+	//triggers {pollSCM('* * * * *')}
+    options
+	{
+		timestamps()
+	}
+}
+
+stages
+{
+
 	stage ('Code Checkout') 
 	{
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git', url: 'git@github.com:AlexViki/laba8_jenkins_sonarqube_ansible.git']]])
