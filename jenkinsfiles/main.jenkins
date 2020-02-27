@@ -35,7 +35,7 @@ node
 	{
 		script
 		{
-			echo '----BUILD----'
+			echo '---------Installing Azure---------'
 			sh 'sudo apt-get update'
 			sh 'sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
 			withCredentials([azureServicePrincipal('SP_laba_08')])
