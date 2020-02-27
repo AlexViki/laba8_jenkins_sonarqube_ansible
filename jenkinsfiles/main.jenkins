@@ -1,13 +1,13 @@
+#!groovy
+properties([disableConcurrentBuilds()])
+
 pipeline
 {
 	agent any
-	// run every minute
-	//triggers {pollSCM('* * * * *')}
-    options
+	options
 	{
 		timestamps()
 	}
-}
 
 stages
 {
@@ -60,6 +60,8 @@ stages
 			sh 'sudo pip install ansible[azure]'
 		}
 	}
+
+}
 
 }
 
