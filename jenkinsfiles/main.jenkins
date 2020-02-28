@@ -5,6 +5,24 @@ node
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git', url: 'git@github.com:AlexViki/laba8_jenkins_sonarqube_ansible.git']]])
 	}
 	
+	stage ('Installing SW')
+	{
+		script
+		{
+			echo '---------Installing Azure---------'
+			sh 'sudo apt-get update'
+			sh 'sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
+			withCredentials([azureServicePrincipal('SP_laba_08')])
+			{
+				sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
+			}
+			echo '---------Installing Ansible---------'
+			sh 'sudo apt-get install -y libssl-dev libffi-dev python-dev python-pip'
+			sh 'sudo pip install ansible'
+			sh 'sudo pip install ansible[azure]'
+		}
+	}
+
 	stage ('Code Quality')
 	{
 		script
@@ -41,7 +59,7 @@ node
 				script
 				{
 					echo '----> Test YML file'
-					sh 'ansible-playbook --syntax-check ${WORKSPACE}/cfg/create_vm.yml'
+//					sh 'ansible-playbook --syntax-check ${WORKSPACE}/cfg/create_vm.yml'
 				}
 			}
 			stage ('Version')
@@ -53,24 +71,6 @@ node
 					sh 'az --version'
 				}
 			}
-		}
-	}
-	
-	stage ('Installing SW')
-	{
-		script
-		{
-			echo '---------Installing Azure---------'
-			sh 'sudo apt-get update'
-			sh 'sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
-			withCredentials([azureServicePrincipal('SP_laba_08')])
-			{
-				sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
-			}
-			echo '---------Installing Ansible---------'
-			sh 'sudo apt-get install -y libssl-dev libffi-dev python-dev python-pip'
-			sh 'sudo pip install ansible'
-			sh 'sudo pip install ansible[azure]'
 		}
 	}
 }
