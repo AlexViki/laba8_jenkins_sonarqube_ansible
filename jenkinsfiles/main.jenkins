@@ -38,7 +38,7 @@ node
 		{
 			stage ('YML file')
 			{
-				steps
+				script
 				{
 					echo '----> Test YML file'
 					sh 'ansible-playbook --syntax-check ${WORKSPACE}/cfg/create_vm.yml'
@@ -46,7 +46,7 @@ node
 			}
 			stage ('Version')
 			{
-				steps
+				script
 				{
 					echo '----> Test version'
 					sh 'ansible --version'
