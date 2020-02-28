@@ -11,7 +11,7 @@ node
 		{
 			echo '---------Installing Azure---------'
 			sh 'sudo apt-get update'
-			sh 'sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
+//			sh 'sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
 			withCredentials([azureServicePrincipal('SP_laba_08')])
 			{
 				sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
@@ -23,7 +23,7 @@ node
 		}
 	}
 
-	stage ('Code Quality')
+	stage ('Quality Code')
 	{
 		script
 		{
@@ -35,7 +35,7 @@ node
 
         }
 	}
-	
+
 	stage("Quality Gate")
 	{
 		sleep(10)
@@ -50,28 +50,14 @@ node
 		}
     }
 
-	stage('Testing files...')
+	stage ('Quality YML')
 	{
-		parallel
+		script
 		{
-			stage ('YML file')
-			{
-				script
-				{
-					echo '----> Test YML file'
-//					sh 'ansible-playbook --syntax-check ${WORKSPACE}/cfg/create_vm.yml'
-				}
-			}
-			stage ('Version')
-			{
-				script
-				{
-					echo '----> Test version'
-					sh 'ansible --version'
-					sh 'az --version'
-				}
-			}
+			echo '----> Test YML file'
+			sh 'ansible-playbook --syntax-check ${WORKSPACE}/cfg/create_vm.yml'
 		}
 	}
+			
 ////////////////////////////////////////////////////////////////	
 }
