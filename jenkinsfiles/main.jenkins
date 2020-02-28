@@ -14,6 +14,7 @@ node
 			{
 				sh "${tool("SonarQubeScaner")}/bin/sonar-scanner"
             }
+
         }
 	}
 	
@@ -30,8 +31,34 @@ node
 				}
 		}
     }
+
+	stage('Testing files...')
+	{
+		parallel
+		{
+			stage ('YML file')
+			{
+				steps
+				{
+					echo '----> Test YML file'
+					sh 'ansible-playbook --syntax-check ${WORKSPACE}/cfg/create_vm.yml'
+				}
+			}
+			stage ('Version')
+			{
+				steps
+				{
+					echo '----> Test version'
+					sh 'ansible --version'
+					sh 'az --version'
+				}
+			}
+		}
+	}
+
+
 	
-	stage ('Build')
+	stage ('Installing SW')
 	{
 		script
 		{
