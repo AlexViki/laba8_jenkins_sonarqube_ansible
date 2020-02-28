@@ -58,6 +58,15 @@ node
 			sh 'ansible-playbook --syntax-check ${WORKSPACE}/cfg/create_vm.yml'
 		}
 	}
+
+	stage('Deploy VM...')
+	{
+		script
+		{
+			echo '----> Deploy new VM via Ansible'
+			sh 'ansible-playbook -i $WORKSPACE/cfg/hosts $WORKSPACE/cfg/create_vm.yml'
+		}
+    }
 			
 ////////////////////////////////////////////////////////////////	
 }
