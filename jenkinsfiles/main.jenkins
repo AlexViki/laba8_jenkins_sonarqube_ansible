@@ -67,6 +67,15 @@ node
 			sh 'ansible-playbook -i $WORKSPACE/cfg/hosts $WORKSPACE/cfg/create_vm.yml'
 		}
     }
+
+	stage('INFO')
+	{
+		script
+		{
+			echo '----> INFO VM'
+			sh 'az vm show -d -g laba08-rg -n laba08-vm --query publicIps -o tsv'
+		}
+    }
 			
 ////////////////////////////////////////////////////////////////	
 }
