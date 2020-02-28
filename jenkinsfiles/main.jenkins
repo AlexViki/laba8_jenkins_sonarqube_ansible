@@ -55,8 +55,6 @@ node
 			}
 		}
 	}
-
-
 	
 	stage ('Installing SW')
 	{
