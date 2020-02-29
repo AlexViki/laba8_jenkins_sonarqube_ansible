@@ -10,16 +10,16 @@ node
 		script
 		{
 			echo '---------Installing Azure---------'
-			sh 'sudo apt-get update'
+//			sh 'sudo apt-get update'
 //			sh 'sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
 			withCredentials([azureServicePrincipal('SP_laba_08')])
 			{
 				sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
 			}
 			echo '---------Installing Ansible---------'
-			sh 'sudo apt-get install -y libssl-dev libffi-dev python-dev python-pip'
-			sh 'sudo pip install ansible'
-			sh 'sudo pip install ansible[azure]'
+//			sh 'sudo apt-get install -y libssl-dev libffi-dev python-dev python-pip'
+//			sh 'sudo pip install ansible'
+//			sh 'sudo pip install ansible[azure]'
 		}
 	}
 
@@ -74,11 +74,10 @@ node
 		{
 			echo '----> INFO VM'
 			sh 'az vm show -d -g laba08-rg -n laba08-vm --query publicIps -o tsv > $WORKSPACE/cfg/host_vm.txt'
-			sh 'sudo rm -rf /etc/ansible'
-			sh 'sudo mkdir /etc/ansible'
-			sh 'sudo cp $WORKSPACE/cfg/ansible.cfg /var/lib/jenkins/.ansible'
+			sh 'sudo rm -rf /etc/ansible && sudo mkdir /etc/ansible'
 			sh 'sudo cp $WORKSPACE/cfg/ansible.cfg /etc/ansible/ansible.cfg'
 			sh 'ansible -i $WORKSPACE/cfg/host_vm.txt all -m ping'
+			sh 'ansible-playbook -i $WORKSPACE/cfg/host_vm.txt $WORKSPACE/cfg/setup.yml'
 		}
     }
 			
