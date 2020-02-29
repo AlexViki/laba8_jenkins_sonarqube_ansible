@@ -70,11 +70,9 @@ node
 
 	stage('INFO')
 	{
-		sleep(10)
 		script
 		{
 			echo '----> INFO VM'
-			sh 'sudo export ANSIBLE_HOST_KEY_CHECKING=False'
 			sh 'az vm show -d -g laba08-rg -n laba08-vm --query publicIps -o tsv > $WORKSPACE/cfg/host_vm.txt'
 			sh 'ansible-playbook -i $WORKSPACE/cfg/host_vm.txt all -m ping'
 		}
