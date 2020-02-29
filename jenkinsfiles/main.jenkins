@@ -74,6 +74,7 @@ node
 		{
 			echo '----> INFO VM'
 			sh 'az vm show -d -g laba08-rg -n laba08-vm --query publicIps -o tsv > $WORKSPACE/cfg/host_vm.txt'
+			sh 'sudo mkdir /etc/ansible'
 			sh 'sudo cp $WORKSPACE/cfg/ansible.cfg /var/lib/jenkins/.ansible'
 			sh 'sudo cp $WORKSPACE/cfg/ansible.cfg /etc/ansible/ansible.cfg'
 //			sh 'ansible -i $WORKSPACE/cfg/host_vm.txt all -m ping'
