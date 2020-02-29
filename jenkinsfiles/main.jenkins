@@ -77,7 +77,7 @@ node
 			sh 'sudo mkdir /etc/ansible'
 			sh 'sudo cp $WORKSPACE/cfg/ansible.cfg /var/lib/jenkins/.ansible'
 			sh 'sudo cp $WORKSPACE/cfg/ansible.cfg /etc/ansible/ansible.cfg'
-//			sh 'ansible -i $WORKSPACE/cfg/host_vm.txt all -m ping'
+			sh 'ansible -i $WORKSPACE/cfg/host_vm.txt all -m ping'
 		}
     }
 			
