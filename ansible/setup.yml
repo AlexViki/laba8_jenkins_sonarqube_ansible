@@ -3,6 +3,9 @@
   hosts: all
   become: yes
   
+  vars:
+    source_file: ./
+
   tasks:
   - name: Installing nginx the latest version
     apt: name=nginx state=latest
