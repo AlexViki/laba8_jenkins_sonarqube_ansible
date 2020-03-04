@@ -4,7 +4,7 @@
   become: yes
   
   vars:
-    source_file: /tmp/web/*
+    source_file: /tmp/web/
     destin_file: /var/www/html
 
 
