@@ -20,4 +20,4 @@
 
   handlers:
   - name: restart_nginx
-    service: name=nginx start=restarted
+    service: name=nginx state=restarted
