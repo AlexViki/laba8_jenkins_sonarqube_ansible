@@ -73,7 +73,7 @@ node
 		script
 		{
 			echo '----> INFO VM'
-			echo '[server_web]' > $WORKSPACE/ansible/host_vm.txt
+//			echo '[server_web]' > $WORKSPACE/ansible/host_vm.txt
 			sh 'az vm show -d -g laba08-rg -n laba08-vm --query publicIps -o tsv >> $WORKSPACE/ansible/host_vm.txt'
 //			sh 'sudo rm -rf /etc/ansible && sudo mkdir /etc/ansible'
 //			sh 'sudo cp $WORKSPACE/ansible/ansible.cfg /etc/ansible/ansible.cfg'
