@@ -68,7 +68,7 @@ node
 		}
     }
 
-	stage('PreSetup')
+	stage('PreSettings')
 	{
 		script
 		{
