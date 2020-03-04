@@ -91,6 +91,7 @@ node
 		script
 		{
 			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/setup.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/info.yml'
 		}
     }
 			
