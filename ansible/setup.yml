@@ -1,6 +1,6 @@
 ---
 - name: Install NGINX
-  hosts: server_web
+  hosts: all
   become: yes
   
   tasks:

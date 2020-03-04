@@ -1,0 +1,8 @@
+---
+ - name: Test ping
+   hosts: server_web
+   become: yes
+
+   tasks:
+   - name: Ping servers
+     ping:
