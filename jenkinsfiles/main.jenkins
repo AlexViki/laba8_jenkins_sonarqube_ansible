@@ -55,7 +55,7 @@ node
 		script
 		{
 			echo '----> Test YML file'
-			sh 'ansible-playbook --syntax-check ${WORKSPACE}/cfg/create_vm.yml'
+			sh 'ansible-playbook --syntax-check ${WORKSPACE}/ansible/create_vm.yml'
 		}
 	}
 
@@ -64,20 +64,21 @@ node
 		script
 		{
 			echo '----> Deploy new VM via Ansible'
-			sh 'ansible-playbook -i $WORKSPACE/cfg/hosts.txt $WORKSPACE/cfg/create_vm.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_vm.yml'
 		}
     }
 
-	stage('INFO')
+	stage('PreSetup')
 	{
 		script
 		{
 			echo '----> INFO VM'
-			sh 'az vm show -d -g laba08-rg -n laba08-vm --query publicIps -o tsv > $WORKSPACE/cfg/host_vm.txt'
-			sh 'sudo rm -rf /etc/ansible && sudo mkdir /etc/ansible'
-			sh 'sudo cp $WORKSPACE/cfg/ansible.cfg /etc/ansible/ansible.cfg'
-			sh 'ansible -i $WORKSPACE/cfg/host_vm.txt all -m ping'
-			sh 'ansible-playbook -i $WORKSPACE/cfg/host_vm.txt $WORKSPACE/cfg/setup.yml'
+			echo '[servers]' > host_vm.txt
+			sh 'az vm show -d -g laba08-rg -n laba08-vm --query publicIps -o tsv >> $WORKSPACE/ansible/host_vm.txt'
+//			sh 'sudo rm -rf /etc/ansible && sudo mkdir /etc/ansible'
+//			sh 'sudo cp $WORKSPACE/ansible/ansible.cfg /etc/ansible/ansible.cfg'
+			sh 'ansible -i $WORKSPACE/ansible/host_vm.txt all -m ping'
+//			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/setup.yml'
 		}
     }
 			
