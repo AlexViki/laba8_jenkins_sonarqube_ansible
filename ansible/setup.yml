@@ -26,6 +26,12 @@
     copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
     notify: restart_nginx
 
+  - name: create symlink
+     file:
+       src: /etc/nginx/sites-available/app_site.cfg
+       dest: /etc/nginx/sites-enabled/default
+       state: link
+
   handlers:
   - name: restart_nginx
     service: name=nginx state=restarted
