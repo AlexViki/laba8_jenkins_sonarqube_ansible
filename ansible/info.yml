@@ -1,0 +1,10 @@
+---
+- name: Show info from server
+  hosts: all
+  become: yes
+
+tasks:
+ - set_fact: all_info="{{ ansible_distribution }}"
+
+ - debug:
+     var: all_info
