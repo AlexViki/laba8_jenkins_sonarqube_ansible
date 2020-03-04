@@ -83,6 +83,7 @@ node
 			sh 'sudo mkdir /tmp/web && sudo cp -R $WORKSPACE/src/* /tmp/web'
 			sh 'sudo mkdir /tmp/config && sudo cp -R $WORKSPACE/ansible/app_site.cfg /tmp/config/app_site.cfg'
 			sh 'sudo cp -R $WORKSPACE/ansible/.htpasswd /tmp/config'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/info.yml'
 		}
     }
 
@@ -91,7 +92,6 @@ node
 		script
 		{
 			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/setup.yml'
-			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/info.yml'
 		}
     }
 			
