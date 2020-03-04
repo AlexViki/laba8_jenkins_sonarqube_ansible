@@ -1,10 +1,10 @@
 ---
-- hosts: server_web
+- name: Install NGINX
+  hosts: server_web
+  become: yes
+  
   tasks:
-    - name: ensure nginx is at the latest version
-      apt: name=nginx state=latest
-      sudo: yes
-    - name: start nginx
-      service:
-          name: nginx
-          state: started
+  - name: Installing nginx the latest version
+    apt: name=nginx state=latest
+  - name: start nginx
+    service: name=nginx state=started enabled=yes
