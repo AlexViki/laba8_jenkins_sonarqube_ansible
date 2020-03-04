@@ -4,8 +4,8 @@
   become: yes
   
   vars:
-    source_file: /tmp/web
-    destin_file: /var/www/http
+    source_file: /tmp/web/*
+    destin_file: /var/www/html
 
 
   tasks:
