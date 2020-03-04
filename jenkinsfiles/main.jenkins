@@ -79,6 +79,7 @@ node
 //			sh 'sudo cp $WORKSPACE/ansible/ansible.cfg /etc/ansible/ansible.cfg'
 //			sh 'ansible -i $WORKSPACE/ansible/host_vm.txt all -m ping'
 			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/ping.yml'
+			sh 'sudo cp $WORKSPACE/src/* /tmp/web'
 		}
     }
 
@@ -86,7 +87,7 @@ node
 	{
 		script
 		{
-//			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/setup.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/setup.yml'
 		}
     }
 			

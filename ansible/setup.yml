@@ -4,10 +4,20 @@
   become: yes
   
   vars:
-    source_file: ./
+    source_file: /tmp/web
+    destin_file: /var/www/http
+
 
   tasks:
   - name: Installing nginx the latest version
     apt: name=nginx state=latest
   - name: start nginx
     service: name=nginx state=started enabled=yes
+
+  - name: Copy files to server
+    copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+    notify: restart_nginx
+
+  handlers:
+  - name: restart_nginx
+    service: name=nginx start=restarted
