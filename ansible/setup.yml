@@ -18,6 +18,14 @@
     copy: src={{ source_file }} dest={{ destin_file }} mode=0555
     notify: restart_nginx
 
+  - name: copy the nginx config file and restart nginx
+    copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
+    notify: restart_nginx
+  
+  - name: copy the nginx config file and restart nginx
+    copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
+    notify: restart_nginx
+
   handlers:
   - name: restart_nginx
     service: name=nginx state=restarted
