@@ -2,6 +2,7 @@
 - name: Create Azure resources
   connection: local
   hosts: all
+  become: yes
   roles:
     - create_vm
 #    - { role: create_vm, when: ansible_system == "Linux" }
