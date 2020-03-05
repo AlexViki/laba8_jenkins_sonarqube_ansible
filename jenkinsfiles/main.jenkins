@@ -55,7 +55,7 @@ node
 		script
 		{
 			echo '----> Test YML file'
-			sh 'ansible-playbook --syntax-check ${WORKSPACE}/ansible/create_vm.yml'
+			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/nginx/tasks/create_vm.yml'
 		}
 	}
 
