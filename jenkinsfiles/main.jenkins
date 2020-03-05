@@ -55,7 +55,9 @@ node
 		script
 		{
 			echo '----> Test YML file'
-			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/nginx/tasks/create_vm.yml'
+			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/create_vm/tasks/main.yml'
+			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/nginx/tasks/main.yml'
+			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/common/tasks/main.yml'
 		}
 	}
 
@@ -64,7 +66,7 @@ node
 		script
 		{
 			echo '----> Deploy new VM via Ansible'
-			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/roles/nginx/tasks/create_vm.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_vm.yml'
 		}
     }
 
@@ -79,8 +81,8 @@ node
 //			sh 'sudo cp $WORKSPACE/ansible/ansible.cfg /etc/ansible/ansible.cfg'
 //			sh 'ansible -i $WORKSPACE/ansible/host_vm.txt all -m ping'
 
-			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/roles/nginx/tasks/ping.yml'
-			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/roles/nginx/tasks/info.yml'
+//			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/roles/nginx/tasks/ping.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/os_info.yml'
 
 			sh 'sudo rm -rf /tmp/web && sudo rm -rf /tmp/config'
 			sh 'sudo mkdir /tmp/web && sudo cp -R $WORKSPACE/src/* /tmp/web'
@@ -93,7 +95,7 @@ node
 	{
 		script
 		{
-			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/roles/nginx/tasks/nginx.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/nginx.yml'
 		}
     }
 			
