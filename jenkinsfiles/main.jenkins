@@ -61,7 +61,7 @@ node
 //			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/nginx/tasks/main.yml'
 
 			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/os_info.yml'
-			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/common/tasks/main.yml'
+//			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/common/tasks/main.yml'
 		}
 	}
 
