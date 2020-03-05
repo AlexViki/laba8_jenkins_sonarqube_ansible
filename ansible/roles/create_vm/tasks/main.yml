@@ -1,6 +1,6 @@
 ---
 - name: Create Azure resources
-  connection: local
+#  connection: local
   hosts: all
   vars_files:
     - vars.yml
