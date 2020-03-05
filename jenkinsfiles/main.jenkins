@@ -95,7 +95,7 @@ node
 	{
 		script
 		{
-			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/nginx.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/roles/nginx/tasks/nginx.yml'
 		}
     }
 			
