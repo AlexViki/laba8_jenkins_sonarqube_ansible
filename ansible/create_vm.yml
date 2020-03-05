@@ -1,5 +1,6 @@
 ---
-- name: Install nginx on different VM's
+- name: Create Azure resources
+  connection: local
   hosts: all
   roles:
     - create_vm

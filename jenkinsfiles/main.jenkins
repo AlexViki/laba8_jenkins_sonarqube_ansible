@@ -55,13 +55,12 @@ node
 		script
 		{
 			echo '----> Test YML file'
-			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/create_vm/tasks/create_vm.yml'
+			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/create_vm.yml'
 
 			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/nginx.yml'
 //			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/nginx/tasks/main.yml'
 
 			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/os_info.yml'
-
 //			sh 'ansible-playbook --syntax-check $WORKSPACE/ansible/roles/common/tasks/main.yml'
 		}
 	}
@@ -71,7 +70,7 @@ node
 		script
 		{
 			echo '----> Deploy new VM via Ansible'
-			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/roles/create_vm/tasks/create_vm.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_vm.yml'
 		}
     }
 
