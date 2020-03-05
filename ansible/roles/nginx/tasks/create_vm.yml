@@ -3,7 +3,7 @@
   connection: local
   hosts: all
   vars_files:
-    - ../../vars.yml
+    - vars.yml
  
 #  vars:
 #    - admin_username: alex
