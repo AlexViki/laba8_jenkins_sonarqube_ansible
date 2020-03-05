@@ -1,0 +1,12 @@
+---
+- name: Ping servers
+  ping:
+
+- shell: uptime -p
+  register: result
+     
+- debug:
+  msg: "OS: {{ ansible_distribution }} {{ ansible_distribution_version }} | kernel: {{ ansible_kernel }} | IP: {{ ansible_all_ipv4_addresses }}"
+
+- debug:
+  var: result

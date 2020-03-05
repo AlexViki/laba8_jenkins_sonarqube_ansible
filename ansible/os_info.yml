@@ -1,5 +1,5 @@
 ---
-- name: Install nginx on different VM's
+- name: Show info from server
   hosts: all
   roles:
     - common
