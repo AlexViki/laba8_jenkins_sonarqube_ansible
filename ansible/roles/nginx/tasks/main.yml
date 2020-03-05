@@ -1,0 +1,21 @@
+---
+- name: Installing nginx the latest version
+  apt: name=nginx state=latest
+- name: start nginx
+  service: name=nginx state=started enabled=yes
+
+- name: Copy files to server
+  copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+  notify: restart_nginx
+
+- name: copy the nginx config file and restart nginx
+  copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
+  notify: restart_nginx
+  
+- name: copy the nginx config file and restart nginx
+  copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
+  notify: restart_nginx
+
+- name: create symlink
+  file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
+  notify: restart_nginx

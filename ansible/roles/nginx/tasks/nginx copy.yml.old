@@ -7,7 +7,6 @@
     source_file: /tmp/web/
     destin_file: /var/www/html
 
-
   tasks:
   - name: Installing nginx the latest version
     apt: name=nginx state=latest
