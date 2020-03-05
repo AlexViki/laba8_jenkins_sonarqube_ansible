@@ -1,0 +1,3 @@
+1. send e-mail after build
+2. run Ubuntu and CentOS, using 2 create_vm.yml files for every OS
+3. 

@@ -3,4 +3,5 @@
   connection: local
   hosts: all
   roles:
-    - { role: create_vm, when: ansible_system == "Linux" }
+    - create_vm
+#    - { role: create_vm, when: ansible_system == "Linux" }
