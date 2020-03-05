@@ -64,7 +64,7 @@ node
 		script
 		{
 			echo '----> Deploy new VM via Ansible'
-			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_vm.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/roles/nginx/tasks/create_vm.yml'
 		}
     }
 
