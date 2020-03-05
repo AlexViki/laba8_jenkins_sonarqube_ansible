@@ -3,7 +3,7 @@
   connection: local
   hosts: all
   vars_files:
-    - /roles/nginx/vars/vars.yml
+    - ../../../vars.yml
  
 #  vars:
 #    - admin_username: alex
