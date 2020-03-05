@@ -82,7 +82,7 @@ node
 //			sh 'ansible -i $WORKSPACE/ansible/host_vm.txt all -m ping'
 
 //			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/roles/nginx/tasks/ping.yml'
-			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/os_info.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/roles/common/tesks/os_info.yml'
 
 			sh 'sudo rm -rf /tmp/web && sudo rm -rf /tmp/config'
 			sh 'sudo mkdir /tmp/web && sudo cp -R $WORKSPACE/src/* /tmp/web'
