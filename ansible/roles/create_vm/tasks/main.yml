@@ -1,5 +1,5 @@
 ---
-- name: "Create Azure resources"
+- name: Create Azure resources
   connection: local
 #  hosts: all
   vars_files:
