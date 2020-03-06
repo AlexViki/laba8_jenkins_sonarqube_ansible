@@ -6,3 +6,6 @@ Settings for Jenkins: if you have issue "sudo: no tty present and no askpass pro
 
 Settings for Ansible, ignore ansible SSH authenticity checking
 - export ANSIBLE_HOST_KEY_CHECKING=False
+
+Information on available virtual machine images.
+- az vm image list --all (https://docs.azure.cn/zh-cn/cli/vm/image?view=azure-cli-latest)
