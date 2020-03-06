@@ -1,3 +1,4 @@
 1. send e-mail after build
 2. run Ubuntu and CentOS, using 2 create_vm.yml files for every OS
 3. templates, create a few items in thml for evey distro (<label class="title">Сделать deploy Laba-08</label>)
+4. Add page "about" to main page and use template for general info via ansible
