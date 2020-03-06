@@ -5,6 +5,6 @@
 #  become: yes
   roles:
 #    - create_vm
-    - create_centos
+#    - create_centos
 #    - { role: create_vm, when: ansible_system == "Linux" }
 #    - { role: create_centos, when: ansible_system == "Linux" }
