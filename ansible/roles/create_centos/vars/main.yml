@@ -1,7 +1,7 @@
 ---
   admin_username: alex
   project_prefix: laba08
-  os_type: "centos"
+  ostype: "centos"
   location: "westeurope"
   vm_size: "Standard_B1s"
   disk_type: "Standard_LRS"
@@ -13,6 +13,6 @@
   virtualnetwork_name: "{{project_prefix}}-vnet"
   subnet_name: "{{project_prefix}}-subnet"
   securitygroup_name: "{{project_prefix}}-nsg"
-  vm_root_name: "{{project_prefix}}-vm-{{os_type}}"
-  public_ip_name: "{{project_prefix}}-ip-{{os_type}}"
-  nic_root_name: "{{project_prefix}}-nic-{{os_type}}"
+  vm_root_name: "{{project_prefix}}-vm-{{ostype}}"
+  public_ip_name: "{{project_prefix}}-ip-{{ostype}}"
+  nic_root_name: "{{project_prefix}}-nic-{{ostype}}"
