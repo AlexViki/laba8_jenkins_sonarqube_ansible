@@ -90,6 +90,6 @@
         image:
           offer: CentOS
           publisher: OpenLogic
-          sku: Stable
+          sku: "7.5"
           version: latest
 #      with_sequence: count="{{instances_number}}"
