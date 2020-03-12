@@ -97,8 +97,8 @@
          network_interface_names: "{{nic_root_name}}"
 #         custom_data: "{{ lookup('file', 'cloud-init.yml') }}"
          image:
-           offer: UbuntuServer
-           publisher: Canonical
-           sku: '18.04-LTS'
+           offer: CentOS
+           publisher: OpenLogic
+           sku: '7.5'
            version: latest
 #       with_sequence: count="{{instances_number}}"
