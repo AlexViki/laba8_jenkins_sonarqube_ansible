@@ -59,14 +59,14 @@
 #            direction: Inbound
 #      when: local_ip | ipaddr
 
-     - name: Create a network interface using existing security group and public IP
-       azure_rm_networkinterface:
-         name: "{{nic_root_name}}"
-         resource_group: "{{resourcegroup_name}}"
-         virtual_network_name: "{{virtualnetwork_name}}"
-         subnet_name: "{{subnet_name}}"
-         security_group_name: "{{securitygroup_name}}"
-         public_ip_address_name: "{{public_ip_name}}"
+#     - name: Create a network interface using existing security group and public IP
+#       azure_rm_networkinterface:
+#         name: "{{nic_root_name}}"
+#         resource_group: "{{resourcegroup_name}}"
+#         virtual_network_name: "{{virtualnetwork_name}}"
+#         subnet_name: "{{subnet_name}}"
+#         security_group_name: "{{securitygroup_name}}"
+#         public_ip_address_name: "{{public_ip_name}}"
 
 #    - name: "----->Create a network interface for each VM"
 #      azure_rm_networkinterface:
