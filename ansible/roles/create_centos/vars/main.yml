@@ -1,6 +1,6 @@
 ---
 #  admin_username: alex
-#  project_prefix: laba08
+  project_prefix: laba08
 #  os_type: "centos"
 #  location: "westeurope"
 #  vm_size: "Standard_B1s"
