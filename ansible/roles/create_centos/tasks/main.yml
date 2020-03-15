@@ -17,46 +17,46 @@
 #    - public_ip_name: "{{project_prefix}}-ip"
 #    - nic_root_name: "{{project_prefix}}-nic"
 
-#    - name: "----->Create Resource Group"
-#      azure_rm_resourcegroup:
-#        name: "{{resourcegroup_name}}"
-#        location: "{{location}}"
+    - name: "----->Create Resource Group"
+      azure_rm_resourcegroup:
+        name: "{{resourcegroup_name}}"
+        location: "{{location}}"
 
-#    - name: "----->Create Virtual Network"
-#      azure_rm_virtualnetwork:
-#        name: "{{virtualnetwork_name}}"
-#        resource_group: "{{resourcegroup_name}}"
-#        address_prefixes_cidr:
-#          - "{{virtualnetwork_cidr}}"
+    - name: "----->Create Virtual Network"
+      azure_rm_virtualnetwork:
+        name: "{{virtualnetwork_name}}"
+        resource_group: "{{resourcegroup_name}}"
+        address_prefixes_cidr:
+          - "{{virtualnetwork_cidr}}"
 
-#    - name: "----->Create Subnet in for VMs"
-#      azure_rm_subnet:
-#        name: "{{subnet_name}}"
-#        virtual_network_name: "{{virtualnetwork_name}}"
-#        resource_group: "{{resourcegroup_name}}"
-#        address_prefix_cidr: "{{subnet_cidr}}"
-#      register: subnet
+    - name: "----->Create Subnet in for VMs"
+      azure_rm_subnet:
+        name: "{{subnet_name}}"
+        virtual_network_name: "{{virtualnetwork_name}}"
+        resource_group: "{{resourcegroup_name}}"
+        address_prefix_cidr: "{{subnet_cidr}}"
+      register: subnet
 
-#    - name: "----->Create security rules (if local IP address was given)"
-#      azure_rm_securitygroup:
-#        name: "{{securitygroup_name}}"
-#        resource_group: "{{resourcegroup_name}}"
-#        purge_rules: yes
-#        rules:
-#          - name: 'Allow-SSH'
-#            protocol: 'Tcp'
-#            source_address_prefix: "*"
-#            destination_port_range: 22
-#            access: Allow
-#            priority: 1000
-#            direction: Inbound
-#          - name: 'Allow-HTTP'
-#            protocol: 'Tcp'
-#            source_address_prefix: "*"
-#            destination_port_range: 80
-#            access: Allow
-#            priority: 1001
-#            direction: Inbound
+    - name: "----->Create security rules (if local IP address was given)"
+      azure_rm_securitygroup:
+        name: "{{securitygroup_name}}"
+        resource_group: "{{resourcegroup_name}}"
+        purge_rules: yes
+        rules:
+          - name: 'Allow-SSH'
+            protocol: 'Tcp'
+            source_address_prefix: "*"
+            destination_port_range: 22
+            access: Allow
+            priority: 1000
+            direction: Inbound
+          - name: 'Allow-HTTP'
+            protocol: 'Tcp'
+            source_address_prefix: "*"
+            destination_port_range: 80
+            access: Allow
+            priority: 1001
+            direction: Inbound
 #      when: local_ip | ipaddr
 
 #     - name: Create a network interface using existing security group and public IP
@@ -68,17 +68,17 @@
 #         security_group_name: "{{securitygroup_name}}"
 #         public_ip_address_name: "{{public_ip_name}}"
 
-#    - name: "----->Create a network interface for each VM"
-#      azure_rm_networkinterface:
-#        name: "{{nic_root_name}}"
-#        resource_group: "{{resourcegroup_name}}"
-#        virtual_network: "{{virtualnetwork_name}}"
-#        subnet_name: "{{subnet_name}}"
-#        security_group: "{{securitygroup_name}}"
-#        ip_configurations:
-#          - name: "ipconfig"
-#            public_ip_address_name: "{{public_ip_name}}"
-#            primary: True
+    - name: "----->Create a network interface for each VM"
+      azure_rm_networkinterface:
+        name: "{{nic_root_name}}"
+        resource_group: "{{resourcegroup_name}}"
+        virtual_network: "{{virtualnetwork_name}}"
+        subnet_name: "{{subnet_name}}"
+        security_group: "{{securitygroup_name}}"
+        ip_configurations:
+          - name: "ipconfig"
+            public_ip_address_name: "{{public_ip_name}}"
+            primary: True
 ##      with_sequence: count="{{instances_number}}"
 
      - name: "----->Create VM with existing NIC"
@@ -97,8 +97,8 @@
          network_interface_names: "{{nic_root_name}}"
 #         custom_data: "{{ lookup('file', 'cloud-init.yml') }}"
          image:
-           offer: "CentOS"
-           publisher: "OpenLogic"
-           sku: "7.5"
-           version: "latest"
+           offer: CentOS
+           publisher: OpenLogic
+           sku: '7.5'
+           version: latest
 #       with_sequence: count="{{instances_number}}"

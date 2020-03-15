@@ -16,7 +16,7 @@
   public_ip_name: "{{project_prefix}}-ip"
   nic_root_name: "{{project_prefix}}-nic"
 
-  os_type: "centos"
-  vm_root_name2: "{{project_prefix}}-vm-{{os_type}}"
-  public_ip_name2: "{{project_prefix}}-ip-{{os_type}}"
-  nic_root_name2: "{{project_prefix}}-nic-{{os_type}}"
+#  os_type: "centos"
+#  vm_root_name2: "{{project_prefix}}-vm-{{os_type}}"
+#  public_ip_name2: "{{project_prefix}}-ip-{{os_type}}"
+#  nic_root_name2: "{{project_prefix}}-nic-{{os_type}}"
