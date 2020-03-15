@@ -71,7 +71,7 @@ node
 		{
 			echo '----> Deploy new VM via Ansible'
 			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_vm.yml'
-			sleep(10)
+			sleep(300)
 			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_centos.yml'
 		}
     }
