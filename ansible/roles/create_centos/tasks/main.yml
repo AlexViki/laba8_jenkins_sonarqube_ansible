@@ -66,10 +66,11 @@
         virtual_network: "{{virtualnetwork_name}}"
         subnet_name: "{{subnet_name}}"
         security_group: "{{securitygroup_name}}"
-        ip_configurations:
-          - name: "ipconfig"
-            public_ip_address_name: "{{public_ip_name}}"
-            primary: True
+        public_ip_address_name: "{{public_ip_name}}"
+#        ip_configurations:
+#          - name: "ipconfig"
+#            public_ip_address_name: "{{public_ip_name}}"
+#            primary: True
 #      with_sequence: count="{{instances_number}}"
 
     - name: "----->Create VM with existing NIC"
