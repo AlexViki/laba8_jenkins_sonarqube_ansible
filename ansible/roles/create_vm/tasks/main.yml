@@ -29,7 +29,7 @@
         address_prefixes_cidr:
           - "{{virtualnetwork_cidr}}"
 
-    - name: "----->Create Subnet in {{virtualnetwork_name}} for VMs"
+    - name: "----->Create Subnet for VMs"
       azure_rm_subnet:
         name: "{{subnet_name}}"
         virtual_network_name: "{{virtualnetwork_name}}"
