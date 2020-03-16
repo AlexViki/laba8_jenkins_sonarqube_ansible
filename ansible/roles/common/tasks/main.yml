@@ -6,7 +6,7 @@
   register: result
      
 - debug:
-    msg: "OS: {{ ansible_distribution }} {{ ansible_distribution_version }} | kernel: {{ ansible_kernel }} | IP: {{ ansible_all_ipv4_addresses }}"
+    msg: "OS: {{ansible_os_family}}, {{ ansible_distribution }} {{ ansible_distribution_version }} | kernel: {{ ansible_kernel }} | IP: {{ ansible_all_ipv4_addresses }}"
 
 - debug:
     var: result
