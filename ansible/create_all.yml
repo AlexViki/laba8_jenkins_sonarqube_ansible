@@ -1,0 +1,11 @@
+---
+- name: Create Azure resources
+  connection: local
+  hosts: all
+#  become: yes
+  roles:
+    - create_rg
+    - create_ubuntu
+    - create_centos
+#    - { role: create_vm, when: ansible_system == "Linux" }
+#    - { role: create_centos, when: ansible_system == "Linux" }
