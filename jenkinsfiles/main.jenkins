@@ -103,7 +103,7 @@ node
 //		sleep(300)
 		script
 		{
-//			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/nginx.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/nginx.yml'
 		}
     }
 			
