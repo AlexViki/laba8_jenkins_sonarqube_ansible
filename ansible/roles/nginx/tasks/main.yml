@@ -1,21 +1,21 @@
 ---
 - name: Ubuntu - Installing nginx the latest version
   apt: name=nginx state=latest
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == "Debian"
 
 - name: Ubuntu start nginx
   service: name=nginx state=started enabled=yes
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == "Debian"
 
 
 
-- name: CentOS - Installing nginx the latest version
-  yum: name=nginx state=latest
-  when: ansible_os_family == "RedHat"
-
-- name: CentOS start nginx
-  service: name=nginx state=started enabled=yes
-  when: ansible_os_family == "RedHat"
+#- name: CentOS - Installing nginx the latest version
+#  yum: name=nginx state=latest
+#  when: ansible_os_family == "RedHat"
+#
+#- name: CentOS start nginx
+#  service: name=nginx state=started enabled=yes
+#  when: ansible_os_family == "RedHat"
 
 
 
