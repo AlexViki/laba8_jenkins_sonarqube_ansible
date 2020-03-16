@@ -10,7 +10,10 @@
 
 
 - name: CentOS - Installing nginx the latest version
-  yum: name=nginx state=latest
+  yum: name={{ item }} state=present
+  with_items:
+      - 'epel-release'
+      - 'nginx'
   when: ansible_os_family == "RedHat"
 
 #- name: CentOS start nginx
