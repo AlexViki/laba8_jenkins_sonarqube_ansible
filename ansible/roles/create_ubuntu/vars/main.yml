@@ -14,6 +14,6 @@
   subnet_name: "{{project_prefix}}-subnet"
   securitygroup_name: "{{project_prefix}}-nsg"
   
-  vm_root_name: "{{os_type}}-{{project_prefix}}-vm"
-  public_ip_name: "{{os_type}}-{{project_prefix}}-ip"
-  nic_root_name: "{{os_type}}-{{project_prefix}}-nic"
+  vm_root_name: "{{project_prefix}}-vm-{{os_type}}"
+  public_ip_name: "{{project_prefix}}-ip-{{os_type}}"
+  nic_root_name: "{{project_prefix}}-nic-{{os_type}}"
