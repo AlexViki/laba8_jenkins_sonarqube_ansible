@@ -1,22 +1,36 @@
 ---
-- name: Installing nginx the latest version
+- name: Ubuntu - Installing nginx the latest version
   apt: name=nginx state=latest
+  when: ansible_os_family == 'Debian'
 
-- name: start nginx
+- name: Ubuntu start nginx
   service: name=nginx state=started enabled=yes
+  when: ansible_os_family == 'Debian'
 
-- name: Copy files to server
-  copy: src={{ source_file }} dest={{ destin_file }} mode=0555
-  notify: restart_nginx
 
-- name: copy the nginx config file and restart nginx
-  copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
-  notify: restart_nginx
-  
-- name: copy the nginx config file and restart nginx
-  copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
-  notify: restart_nginx
 
-- name: create symlink
-  file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
-  notify: restart_nginx
+- name: CentOS - Installing nginx the latest version
+  yum: name=nginx state=latest
+  when: ansible_os_family == "RedHat"
+
+- name: CentOS start nginx
+  service: name=nginx state=started enabled=yes
+  when: ansible_os_family == "RedHat"
+
+
+
+#- name: Copy files to server
+#  copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+#  notify: restart_nginx_ubuntu
+#
+#- name: copy the nginx config file and restart nginx
+#  copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
+#  notify: restart_nginx_ubuntu
+#  
+#- name: copy the nginx config file and restart nginx
+#  copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
+#  notify: restart_nginx_ubuntu
+#
+#- name: create symlink
+#  file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
+#  notify: restart_nginx_ubuntu
