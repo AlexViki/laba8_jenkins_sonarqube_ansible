@@ -70,7 +70,7 @@ node
 			echo '----> Deploy new VM via Ansible'
 			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_rg.yml'
 			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_ubuntu.yml'
-	//		sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_centos.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_centos.yml'
 		}
     }
 
@@ -81,8 +81,8 @@ node
 			echo '----> INFO VM'
 			sh 'echo "[server_web]" > $WORKSPACE/ansible/host_vm.txt'
 
-//			sh 'az vm show -d -g laba-8-rg -n laba-8-vm --query publicIps -o tsv >> $WORKSPACE/ansible/host_vm.txt'
-//			sh 'az vm show -d -g test-8-rg -n test-8-vm --query publicIps -o tsv >> $WORKSPACE/ansible/host_vm.txt'
+			sh 'az vm show -d -g laba-8-rg -n ubuntu-laba-8-vm --query publicIps -o tsv >> $WORKSPACE/ansible/host_vm.txt'
+			sh 'az vm show -d -g laba-8-rg -n centos-laba-8-vm --query publicIps -o tsv >> $WORKSPACE/ansible/host_vm.txt'
 
 //			sh 'sudo rm -rf /etc/ansible && sudo mkdir /etc/ansible'
 //			sh 'sudo cp $WORKSPACE/ansible/ansible.cfg /etc/ansible/ansible.cfg'

@@ -1,45 +1,6 @@
 ---
-    - name: "----->Create Resource Group"
-      azure_rm_resourcegroup:
-        name: "{{resourcegroup_name}}"
-        location: "{{location}}"
 
-    - name: "----->Create Virtual Network"
-      azure_rm_virtualnetwork:
-        name: "{{virtualnetwork_name}}"
-        resource_group: "{{resourcegroup_name}}"
-        address_prefixes_cidr:
-          - "{{virtualnetwork_cidr}}"
-
-    - name: "----->Create Subnet for VMs"
-      azure_rm_subnet:
-        name: "{{subnet_name}}"
-        virtual_network_name: "{{virtualnetwork_name}}"
-        resource_group: "{{resourcegroup_name}}"
-        address_prefix_cidr: "{{subnet_cidr}}"
-      register: subnet
-
-    - name: "----->Create security rules (if local IP address was given)"
-      azure_rm_securitygroup:
-        name: "{{securitygroup_name}}"
-        resource_group: "{{resourcegroup_name}}"
-        purge_rules: yes
-        rules:
-          - name: 'Allow-SSH'
-            protocol: 'Tcp'
-            source_address_prefix: "*"
-            destination_port_range: 22
-            access: Allow
-            priority: 1000
-            direction: Inbound
-          - name: 'Allow-HTTP'
-            protocol: 'Tcp'
-            source_address_prefix: "*"
-            destination_port_range: 80
-            access: Allow
-            priority: 1001
-            direction: Inbound
-#      when: local_ip | ipaddr
+# Create CentOS
 
     - name: "----->Create a network interface for VM"
       azure_rm_networkinterface:
