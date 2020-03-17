@@ -50,16 +50,11 @@
   notify: restart_nginx
 
 - name: Ubuntu - Copy the NGINX config file and restart nginx
-  copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
+  copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/conf.d/default.conf
   when: ansible_os_family == "RedHat"
   notify: restart_nginx
   
 - name: Ubuntu - Copy the NGINX config file and restart nginx
   copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
-  when: ansible_os_family == "RedHat"
-  notify: restart_nginx
-
-- name: Ubuntu - Create symlink for NGINX
-  file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
   when: ansible_os_family == "RedHat"
   notify: restart_nginx
