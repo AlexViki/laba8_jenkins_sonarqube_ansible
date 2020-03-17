@@ -7,6 +7,26 @@
   service: name=nginx state=started enabled=yes
   when: ansible_os_family == "Debian"
 
+- name: Copy application files to server
+  copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+  when: ansible_os_family == "Debian"
+  notify: restart_nginx
+
+- name: Copy the NGINX config file and restart nginx
+  copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
+  when: ansible_os_family == "Debian"
+  notify: restart_nginx
+  
+- name: Copy the NGINX config file and restart nginx
+  copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
+  when: ansible_os_family == "Debian"
+  notify: restart_nginx
+
+- name: Create symlink for NGINX
+  file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
+  when: ansible_os_family == "Debian"
+  notify: restart_nginx
+
 
 
 - name: CentOS - copy the NGINX nginx.repo file
@@ -20,21 +40,3 @@
 - name: CentOS start nginx
   service: name=nginx state=started enabled=yes
   when: ansible_os_family == "RedHat"
-
-
-
-#- name: Copy files to server
-#  copy: src={{ source_file }} dest={{ destin_file }} mode=0555
-#  notify: restart_nginx_ubuntu
-#
-#- name: copy the nginx config file and restart nginx
-#  copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
-#  notify: restart_nginx_ubuntu
-#  
-#- name: copy the nginx config file and restart nginx
-#  copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
-#  notify: restart_nginx_ubuntu
-#
-#- name: create symlink
-#  file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
-#  notify: restart_nginx_ubuntu
