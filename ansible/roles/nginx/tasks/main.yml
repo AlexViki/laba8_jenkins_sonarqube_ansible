@@ -22,7 +22,7 @@
     - name: Ubuntu - Create symlink for NGINX
       file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
       notify: restart_nginx
-when: ansible_os_family == "Debian"
+  when: ansible_os_family == "Debian"
 
 # CentOS server
 
