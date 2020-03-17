@@ -69,9 +69,9 @@ node
 		{
 			echo '----> Deploy new VM via Ansible'
 	//		sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_all.yml'
-	//		sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_rg.yml'
-	//		sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_ubuntu.yml'
-	//		sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_centos.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_rg.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_ubuntu.yml'
+			sh 'ansible-playbook -i $WORKSPACE/ansible/hosts.txt $WORKSPACE/ansible/create_centos.yml'
 		}
     }
 
@@ -101,7 +101,7 @@ node
 
 	stage('Setup')
 	{
-//		sleep(300)
+		sleep(300)
 		script
 		{
 			sh 'ansible-playbook -i $WORKSPACE/ansible/host_vm.txt $WORKSPACE/ansible/nginx.yml'
