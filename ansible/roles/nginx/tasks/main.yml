@@ -1,9 +1,12 @@
 ---
-- name: Ubuntu - Installing nginx the latest version
+
+# Ubuntu server
+
+- name: Ubuntu - Installing NGINX the latest version
   apt: name=nginx state=latest
   when: ansible_os_family == "Debian"
 
-- name: Ubuntu - Start nginx
+- name: Ubuntu - Start NGINX
   service: name=nginx state=started enabled=yes
   when: ansible_os_family == "Debian"
 
@@ -27,16 +30,36 @@
   when: ansible_os_family == "Debian"
   notify: restart_nginx
 
-
+# CentOS server
 
 - name: CentOS - copy the NGINX nginx.repo file
   copy: src=/tmp/config/nginx.repo dest=/etc/yum.repos.d/nginx.repo
   when: ansible_os_family == "RedHat"
 
-- name: CentOS - Installing nginx the latest version
+- name: CentOS - Installing NGINX the latest version
   yum: name=nginx state=latest
   when: ansible_os_family == "RedHat"
 
-- name: CentOS - Start nginx
+- name: CentOS - Start NGINX
   service: name=nginx state=started enabled=yes
   when: ansible_os_family == "RedHat"
+
+- name: Ubuntu - Copy application files to server
+  copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+  when: ansible_os_family == "RedHat"
+  notify: restart_nginx
+
+- name: Ubuntu - Copy the NGINX config file and restart nginx
+  copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
+  when: ansible_os_family == "RedHat"
+  notify: restart_nginx
+  
+- name: Ubuntu - Copy the NGINX config file and restart nginx
+  copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
+  when: ansible_os_family == "RedHat"
+  notify: restart_nginx
+
+- name: Ubuntu - Create symlink for NGINX
+  file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
+  when: ansible_os_family == "RedHat"
+  notify: restart_nginx
