@@ -3,26 +3,26 @@
   apt: name=nginx state=latest
   when: ansible_os_family == "Debian"
 
-- name: Ubuntu start nginx
+- name: Ubuntu - Start nginx
   service: name=nginx state=started enabled=yes
   when: ansible_os_family == "Debian"
 
-- name: Copy application files to server
+- name: Ubuntu - Copy application files to server
   copy: src={{ source_file }} dest={{ destin_file }} mode=0555
   when: ansible_os_family == "Debian"
   notify: restart_nginx
 
-- name: Copy the NGINX config file and restart nginx
+- name: Ubuntu - Copy the NGINX config file and restart nginx
   copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
   when: ansible_os_family == "Debian"
   notify: restart_nginx
   
-- name: Copy the NGINX config file and restart nginx
+- name: Ubuntu - Copy the NGINX config file and restart nginx
   copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
   when: ansible_os_family == "Debian"
   notify: restart_nginx
 
-- name: Create symlink for NGINX
+- name: Ubuntu - Create symlink for NGINX
   file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
   when: ansible_os_family == "Debian"
   notify: restart_nginx
@@ -37,6 +37,6 @@
   yum: name=nginx state=latest
   when: ansible_os_family == "RedHat"
 
-- name: CentOS start nginx
+- name: CentOS - Start nginx
   service: name=nginx state=started enabled=yes
   when: ansible_os_family == "RedHat"
