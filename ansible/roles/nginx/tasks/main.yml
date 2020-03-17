@@ -1,34 +1,28 @@
 ---
 
-# Ubuntu server
-
-- name: Ubuntu - Installing NGINX the latest version
-  apt: name=nginx state=latest
-  when: ansible_os_family == "Debian"
-
-- name: Ubuntu - Start NGINX
-  service: name=nginx state=started enabled=yes
-  when: ansible_os_family == "Debian"
-
-- name: Ubuntu - Copy application files to server
-  copy: src={{ source_file }} dest={{ destin_file }} mode=0555
-  when: ansible_os_family == "Debian"
-  notify: restart_nginx
-
-- name: Ubuntu - Copy the NGINX config file and restart nginx
-  copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
-  when: ansible_os_family == "Debian"
-  notify: restart_nginx
-  
-- name: Ubuntu - Copy the NGINX config file and restart nginx
-  copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
-  when: ansible_os_family == "Debian"
-  notify: restart_nginx
-
-- name: Ubuntu - Create symlink for NGINX
-  file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
-  when: ansible_os_family == "Debian"
-  notify: restart_nginx
+- block: # Ubuntu server
+    - name: Ubuntu - Installing NGINX the latest version
+      apt: name=nginx state=latest
+    
+    - name: Ubuntu - Start NGINX
+      service: name=nginx state=started enabled=yes
+    
+    - name: Ubuntu - Copy application files to server
+      copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+      notify: restart_nginx
+    
+    - name: Ubuntu - Copy the NGINX config file and restart nginx
+      copy: src=/tmp/config/app_site.cfg dest=/etc/nginx/sites-available/app_site.cfg
+      notify: restart_nginx
+      
+    - name: Ubuntu - Copy the NGINX config file and restart nginx
+      copy: src=/tmp/config/.htpasswd dest=/etc/nginx/.htpasswd
+      notify: restart_nginx
+    
+    - name: Ubuntu - Create symlink for NGINX
+      file: src=/etc/nginx/sites-available/app_site.cfg dest=/etc/nginx/sites-enabled/default state=link
+      notify: restart_nginx
+when: ansible_os_family == "Debian"
 
 # CentOS server
 
