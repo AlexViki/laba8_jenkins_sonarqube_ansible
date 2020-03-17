@@ -95,6 +95,7 @@ node
 			sh 'sudo mkdir /tmp/web && sudo cp -R $WORKSPACE/src/* /tmp/web'
 			sh 'sudo mkdir /tmp/config && sudo cp -R $WORKSPACE/ansible/roles/nginx/files/app_site.cfg /tmp/config/app_site.cfg'
 			sh 'sudo cp -R $WORKSPACE/ansible/roles/nginx/files/.htpasswd /tmp/config'
+			sh 'sudo cp -R $WORKSPACE/ansible/roles/nginx/files/nginx.repo /tmp/config'
 		}
     }
 
