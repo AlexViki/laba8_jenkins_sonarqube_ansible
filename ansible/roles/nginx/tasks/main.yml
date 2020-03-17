@@ -14,7 +14,7 @@
   when: ansible_os_family == "RedHat"
 
 - name: CentOS - Installing nginx the latest version
-  yum: name=nginx state=stable
+  yum: name=nginx state=latest
   when: ansible_os_family == "RedHat"
 
 #- name: CentOS start nginx
