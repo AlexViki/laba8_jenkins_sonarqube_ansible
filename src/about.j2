@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>About - App Do to list - laba</title>
+</head>
+<body>
+    <main id="app">
+
+        <div class="topnav">
+            <a class="active" href="./index.html">Home</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <a href="./about.html">About</a>
+        </div>
+
+        <header>
+            <p class="about">"OS: {{ansible_os_family}} {{ ansible_distribution }} {{ ansible_distribution_version }}</p><br>
+            <p class="about">Kernel: {{ ansible_kernel }}</p><br>
+            <p class="about">IP: {{ ansible_all_ipv4_addresses }}"</p>
+        </header>
+
+    </main>
+
+</body>
+</body>
+</html>
