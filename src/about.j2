@@ -18,9 +18,11 @@
         </div>
 
         <header>
-            <p class="about">"OS: {{ansible_os_family}} {{ ansible_distribution }} {{ ansible_distribution_version }}</p><br>
-            <p class="about">Kernel: {{ ansible_kernel }}</p><br>
-            <p class="about">IP: {{ ansible_all_ipv4_addresses }}"</p>
+            <ul class="about">
+                <li class="about">OS: {{ansible_os_family}} {{ ansible_distribution }} {{ ansible_distribution_version }}</li>
+                <li class="about">Kernel: {{ ansible_kernel }}</li>
+                <li class="about">IP: {{ ansible_all_ipv4_addresses }}</li>
+            </ul>
         </header>
 
     </main>
