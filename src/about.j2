@@ -9,22 +9,19 @@
 </head>
 <body>
     <main id="app">
-
         <div class="topnav">
             <a class="active" href="./index.html">Home</a>
             <a href="#news">News</a>
             <a href="#contact">Contact</a>
             <a href="./about.html">About</a>
         </div>
-
         <header>
             <ul class="about">
-                <li class="about">OS: {{ansible_os_family}} {{ ansible_distribution }} {{ ansible_distribution_version }}</li>
+                <li class="about">OS: {{ ansible_os_family }}, {{ ansible_distribution }} {{ ansible_distribution_version }}</li>
                 <li class="about">Kernel: {{ ansible_kernel }}</li>
                 <li class="about">IP: {{ ansible_all_ipv4_addresses }}</li>
             </ul>
         </header>
-
     </main>
 
 </body>
