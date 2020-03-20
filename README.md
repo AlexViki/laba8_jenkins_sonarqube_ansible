@@ -4,8 +4,8 @@ There is the "SonarQubeScaner" and "Quality Gate"
 
 There is a task which is creating 2 instances via Azure which using Ansible. Creating Ubuntu and CentOS. Used different Ansible roles for creating instances and setup these instances.
 In order to use public IP address of instances, used:
-    (sh 'az vm show -d -g laba-8-rg -n ubuntu-laba-8-vm --query publicIps -o tsv >> $WORKSPACE/ansible/host_vm.txt')
-    (sh 'az vm show -d -g laba-8-rg -n centos-laba-8-vm --query publicIps -o tsv >> $WORKSPACE/ansible/host_vm.txt'")
+   - (sh 'az vm show -d -g laba-8-rg -n ubuntu-laba-8-vm --query publicIps -o tsv >> $WORKSPACE/ansible/host_vm.txt')
+   - (sh 'az vm show -d -g laba-8-rg -n centos-laba-8-vm --query publicIps -o tsv >> $WORKSPACE/ansible/host_vm.txt'")
 The main reason why is bad idea use this "-g laba-8-rg -n ubuntu-laba-8-vm",  if we change the name of instance or RG we must edit this parameters too, in file: "main.jenkins"
 
 To all servers installing NGINX and copy config file witch authorization (.htpasswd). From folder "src" coping web-application to all servers.
