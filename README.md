@@ -21,4 +21,3 @@ Settings for Ansible, ignore ansible SSH authenticity checking
 Information on available virtual machine images.
 - az vm image list --all (https://docs.azure.cn/zh-cn/cli/vm/image?view=azure-cli-latest)
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-ps-findimage
-
